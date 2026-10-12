@@ -7,10 +7,10 @@ _Due before the next session._
 Goal output: `Cart: 2 items, total 30`
 
 ```
-A   const cartTotal = itemCount * itemPrice;
 B   const itemPrice = 15;
-C   console.log(`Cart: ${itemCount} items, total ${cartTotal}`);
 D   const itemCount = 2;
+A   const cartTotal = itemCount * itemPrice;
+C   console.log(`Cart: ${itemCount} items, total ${cartTotal}`);
 X   const cartTotal = itemCount + itemPrice;
 Y   console.log(`Cart: ${itemCount} items, total ${itemCount * itemPrice}`);
 ```
