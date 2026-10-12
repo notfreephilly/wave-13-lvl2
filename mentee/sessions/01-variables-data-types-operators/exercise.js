@@ -22,5 +22,5 @@ console.log(typeof price);
 console.log(typeof itemStock);
 console.log(typeof onSale);
 
-console.log(price * 2);
-console.log(price + 2);
+console.log(price * 2); // This line assumes you want a number and will return a number
+console.log(price + 2); // This line will assume 2 is a string and concatenate the two values together
