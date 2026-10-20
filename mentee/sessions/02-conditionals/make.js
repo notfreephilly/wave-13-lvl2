@@ -48,21 +48,21 @@ console.log("make.js running");
 // >
 // > Then test it: change the three starting variables to try **at least four different cases**. Write each case and its output as a comment.
 
-let orderTotal = 40
-let country = "local"
-let shipping = 5
-const isMember = false
+// let orderTotal = 40
+// let country = "local"
+// let shipping = 5
+// const isMember = false
 
-if (isMember) {
-    shipping = 0
-} else if ((country === "local") && (orderTotal > 50)) {
-    shipping = 0
-} else if (country === "local") {
-    shipping = 5
-} else {
-    shipping = 15
-}
+// if (isMember) {
+//     shipping = 0
+// } else if ((country === "local") && (orderTotal > 50)) {
+//     shipping = 0
+// } else if (country === "local") {
+//     shipping = 5
+// } else {
+//     shipping = 15
+// }
 
-const label = shipping === 0 ? "Free shipping" : `Shipping: $${shipping}`
-console.log(label);
+// const label = shipping === 0 ? "Free shipping" : `Shipping: $${shipping}`
+// console.log(label);
 
