@@ -1,13 +1,19 @@
+// Session 3 — Functions
+// Status logic becomes a function. Functions return; the edge displays.
 
-let percent = 15
-
-function isGoodTip(percent) {
-    if (percent >= 15) {
-        return true
+function getStatus(isDone, priority) {
+    if (isDone) {
+        return "Done";
     }
-    return false
+    if (priority === 1) {
+        return "Urgent";
+    }
+    return "To do";
 }
 
-const tipLabel = isGoodTip(percent) ? "Generous" : "Standard"
-console.log(tipLabel);
-console.log(isGoodTip(percent));
+function formatTask(taskName, status) {
+    return `${taskName}: ${status}`;
+}
+
+const status = getStatus(false, 1);
+console.log(formatTask("Buy milk", status));
