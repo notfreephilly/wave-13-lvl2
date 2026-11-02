@@ -2,33 +2,48 @@
 
 console.log("make.js running");
 
-// const inputValue = "";
+const inputValue = "";
 
-// if (inputValue) {
-//     console.log("Thank you!");
-// } else {
-//     console.log("Please type something");
-// }
+if (inputValue) {
+  console.log("Thank you!");
+} else {
+  console.log("Please Type Something!");
+} // Please Type Something
 
+const itemsLeft = 0;
 
-// const itemsLeft = 0
-
-// if (itemsLeft === 0) {
-//     console.log("Sold out");
-// }
-
-
+if (itemsLeft === 0) {
+  console.log("Sold Out");
+}
 
 // A cinema charges: children under 12 pay **$5**. People 65 or older pay **$6**. On Tuesdays, everyone pays **$4**. Everyone else pays **$10**.
 
 //  Write the checks **in the order you'd make them**, in plain English. Mark which one is the "otherwise."
 
-// 1. check if the day is tuesday and set the price to $4
-// 2. if the day is not tuesday, check if age is < 12 and set the price to $5
-// 3. check if the age is >= 65 and set the price to $6
-// 4. otherwise, set the price to $10 (ages 12-64 inclusive)
+//1. Is it Tuesday?
+// 2. If age is below 12, price is $5
+// 3. If age is greater than or equal to 65, retrun $6
+// 4. otherwise return $10
 
+// const day = "Wed";
+// let price = 12;
+// const age = 12;
 
+// // ===
+// // =
+
+// if (day === "Tuesday") {
+//   price = 4;
+// } else if (age <= 12) {
+//   price = 5;
+// } else if (age >= 65) {
+//   price = 6;
+// } else {
+//   price = 10;
+// }
+
+// console.log(`price: $${price}`);
+// //
 
 //  Build a **shipping calculator** in `make.js`. Start with three variables: an order total, a country (`"local"` or `"international"`), and whether the customer is a member.
 
@@ -48,21 +63,22 @@ console.log("make.js running");
 // >
 // > Then test it: change the three starting variables to try **at least four different cases**. Write each case and its output as a comment.
 
-// let orderTotal = 40
-// let country = "local"
-// let shipping = 5
-// const isMember = false
+let orderTotal = 333;
+let country = "international";
+let isMember = false;
 
-// if (isMember) {
-//     shipping = 0
-// } else if ((country === "local") && (orderTotal > 50)) {
-//     shipping = 0
-// } else if (country === "local") {
-//     shipping = 5
-// } else {
-//     shipping = 15
-// }
+let shippingCost;
 
-// const label = shipping === 0 ? "Free shipping" : `Shipping: $${shipping}`
-// console.log(label);
+if (isMember) {
+  shippingCost = 0;
+} else if (country === "local" && orderTotal > 50) {
+  shippingCost = 0;
+} else if (country === "local") {
+  shippingCost = 5;
+} else {
+  shippingCost = 15;
+}
 
+let label = shippingCost === 0 ? "Free shipping" : `Shipping: $${shippingCost}`;
+
+console.log(label);

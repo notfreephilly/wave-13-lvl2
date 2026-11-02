@@ -1,58 +1,86 @@
 # LetPhil — Level 2
 
-Everything for Level 2 lives here. New material appears as the course runs, so **pull before every class**.
+Everything for Level 2 lives here. New material appears as the course runs — a session's exercise after each class, and your app briefs along the way — so **get the latest copy before every class**.
 
 ---
 
-## First time
+## Getting the files
+
+Two ways. **Same files either way** — pick whichever you're comfortable with.
+
+### 🟢 Easiest — download the ZIP
+
+Green **Code** button → **Download ZIP** → extract it. That's your Level 2 folder for the whole course.
+
+When new material appears, download the ZIP again, open it, and **drag across only the new material** — don't re-extract the whole thing over your folder.
+
+What's actually new each time:
+
+| When                      | What to copy across            |
+| ------------------------- | ------------------------------ |
+| After every class         | That session's `exercise.md`   |
+| After sessions 4, 7 and 9 | The new files in `milestones/` |
+
+**If your computer asks whether to replace an existing file, say no.** Nothing already in your folder changes — only new files get added. A "replace?" prompt means you're about to overwrite something, and if you've typed in that file, it's gone.
+
+### 🔵 If you know git — clone it
 
 ```bash
 git clone <this repo>
-cd W-13-LetPhiilMentorship
+cd letphil-level-2
 ```
 
-Then read **`START-HERE.md`**. It explains how a week works, what's due when, and what to install.
-
-## Every session
+Then before each class:
 
 ```bash
 git pull
 ```
 
-New things appear: that session's folder before class, and its `exercise.md` after class.
+New material appears; your edits to the working files survive, because those files never change after they're published.
+
+**If git is new to you, start with the ZIP.** We'll move everyone over around session 3, once you've made and pushed your own repo.
 
 ---
 
-## One rule: don't work inside this repo
+## Where your work actually belongs
 
-**Copy the session folder into your own repo, and work there.**
+**Not in here.** Copy the session folder into your own project folder and work there.
 
 ```
 your-repo/
-  session-03/        ← copied from here
-  expense-tracker/   ← your app
+  session-03/          ← copied from here
+  expense-tracker/     ← your app
 ```
 
-If you edit files inside this clone, the next `git pull` will fight you for them. Keep this folder read-only and your work somewhere that's yours.
+Typing directly into these files is fine for a quick try, but it isn't safe:
+
+|         | What happens to your work                                                       |
+| ------- | ------------------------------------------------------------------------------- |
+| **ZIP** | Safe if you only drag across new files — gone if you re-extract over the folder |
+| **Git** | Survives — but `git pull` will fight you if a file ever does change             |
+
+The copy-out habit avoids both. It's one drag of a folder.
 
 ---
 
-## The twelve sessions
+## The fourteen sessions
 
-| Folder                              | Session                                              |
-| ----------------------------------- | ---------------------------------------------------- |
-| `01-variables-data-types-operators` | Variables, data types, operators                     |
-| `02-conditionals`                   | Conditionals                                         |
-| `03-functions`                      | Functions                                            |
-| `04-arrays-objects`                 | Arrays and objects — _your app starts_               |
-| `05-loops-destructuring`            | Loops and destructuring                              |
-| `06-array-methods`                  | Array methods — _checkpoint · app part 1 due_        |
-| `07-dom`                            | The DOM and props — _app part 2 starts_              |
-| `08-event-listeners`                | Event listeners                                      |
-| `09-localstorage`                   | localStorage and JSON — _part 2 due · part 3 starts_ |
-| `10-fetch-axios`                    | APIs: fetch and axios                                |
-| `11-putting-it-together`            | Putting it together — _part 3 due · live check_      |
-| `12-review-and-react`               | Review and the road to React                         |
+| Folder                              | Session                                                        |
+| ----------------------------------- | -------------------------------------------------------------- |
+| `01-variables-data-types-operators` | Variables, data types, operators                               |
+| `02-conditionals`                   | Conditionals                                                   |
+| `03-functions`                      | Functions                                                      |
+| `04-arrays-objects`                 | Arrays and objects — _your app starts_                         |
+| `05-loops-destructuring`            | Loops and destructuring                                        |
+| `06-array-methods`                  | Array methods — _checkpoint · app part 1 due_                  |
+| `07-dom`                            | The DOM and props — _app part 2 starts_                        |
+| `08-event-listeners`                | Event listeners                                                |
+| `09-localstorage`                   | localStorage and JSON — _part 2 due · part 3 starts_           |
+| `10-fetch-axios`                    | APIs: fetch and axios                                          |
+| `11-putting-it-together`            | Putting it together — _part 3 due · live check_                |
+| `12-review-and-react`               | Review and the road to React                                   |
+| `13-typescript-basics`              | TypeScript basics — runs in the Playground, nothing to install |
+| `14-typescript-your-app`            | TypeScript on your own app — _needs setup before class_        |
 
 ---
 
