@@ -107,7 +107,7 @@ function expenseDescription(item) {
 // total for all expenses
 function getTotal() {
     let total = 0
-    for (let i = 0; i < expenseList.length - 1; i++) {
+    for (let i = 0; i < expenseList.length; i++) {
         total += expenseList[i].amount;
     }
     return `Your recurring expense total is: $${total}`

@@ -55,3 +55,20 @@ console.log(getLineupStatus(players[1])); // On the bench
 const favPlayer = players[0];
 favPlayer.homeRuns = favPlayer.homeRuns + 1;
 console.log(players[0]);
+
+
+// Session 4 exercise
+// A function that changes a players isStarting property from true to false and vise versa
+
+function changeIsStarting(player) {
+  for (let i = 0; i < player.length; i++) {
+    if (player[i].isStarting) {
+      player[i].isStarting = false;
+    } else {
+      player[i].isStarting = true;
+    }
+  }
+  return player;
+}
+
+console.log(changeIsStarting(players));
