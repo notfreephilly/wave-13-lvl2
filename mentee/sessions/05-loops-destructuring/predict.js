@@ -39,20 +39,20 @@ function f() {
 
 
 // Prediction 
-function countUrgent(tasks) {
-    for (const task of tasks) {
-        let count = 0;
-        if (task.priority === 1) {
-            count = count + 1;
-        }
-        return count;
-    }
-}
+// function countUrgent(tasks) {
+//     for (const task of tasks) {
+//         let count = 0;
+//         if (task.priority === 1) {
+//             count = count + 1;
+//         }
+//         return count;
+//     }
+// }
 
 const tasks = [
-    { title: "A", priority: 2 },
-    { title: "B", priority: 1 },
-    { title: "C", priority: 1 }
+    { title: "A", isDone: true },
+    { title: "B", isDone: false },
+    { title: "C", isDone: false }
 ];
 
 console.log(countUrgent(tasks));
@@ -64,3 +64,18 @@ In the form, answer all three:
  > 2. The loop body runs 3 time(s)
  > 3. The author wanted to update the count by adding one when the condition is met, and the fix is move count and the return statement outside the for loop
 ```
+
+
+let count = 0
+let last = ""
+
+for (const task of tasks) {
+    if (!task.isDone) {
+        count = count + 1;
+        last = task.title
+    }
+}
+
+// Iteration 1: count = 0, last = ""
+// Iteration 2: count = 1, last = "B"
+// Iteration 3: count = 2, last = "C"
