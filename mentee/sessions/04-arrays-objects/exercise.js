@@ -22,16 +22,37 @@ console.log(tuesday.condition);
 // X   console.log(days.condition);
 
 
+
+const players = [
+    {
+        name: "Francisco Lindor",
+        homeRuns: 31,
+        isStarting: true,
+        positions: ["Shortstop"],
+    },
+    {
+        name: "Juan Soto",
+        homeRuns: 43,
+        isStarting: false,
+        positions: ["Left field", "Right field"],
+    },
+    {
+        name: "Carson Benge",
+        homeRuns: 21,
+        isStarting: true,
+        positions: ["Right field", "Left field", "Center field"],
+    },
+];
+
+
+// I predict that players[1] isStarting property will be set to true when the function runs
+// This should work because I am directly changing the boolean from false to true for this specific index
+
 // 2. Modify
-function changeIsStarting(player) {
-    for (let i = 0; i < player.length; i++) {
-        if (player[i].isStarting) {
-            player[i].isStarting = false;
-        } else {
-            player[i].isStarting = true;
-        }
-    }
-    return player;
+
+function changeJuanStarting(player) {
+    player[1].isStarting = true;
 }
 
-console.log(changeIsStarting(players));
+changeJuanStarting(players)
+console.log(players[1]);
