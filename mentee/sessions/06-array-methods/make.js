@@ -4,12 +4,6 @@ console.log("make.js running");
 
 
 
-// > 1. Your **count** → `filter(...).length`
-// > 2. Your **filter** loop → `filter`
-// > 3. Your **find** loop → `find`, **with a check for not-found**
-// > 4. Your **transform** loop → `map`
-// > 5. **Keep your sum as a `for...of` loop.** Write a comment saying why you didn't convert it
-// > 6. One **chain**: `filter` then `map`, in one statement
 
 const count = players.filter((player) => player.isStarting).length
 console.log(count);
