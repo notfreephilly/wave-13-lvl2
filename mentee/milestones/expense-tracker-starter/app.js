@@ -25,7 +25,7 @@ const expenseList = [
         label: "Rent",
         amount: 1700,
         category: "home",
-        isPaid: false,
+        isPaid: true,
         isRecurring: true,
         priority: 1
     },
@@ -95,26 +95,35 @@ function expensePriority(item) {
     }
 }
 
-function expenseDescription(item) {
-    if (item.isPaid) {
-        return `${item.label} - Amount paid: $${item.amount} - Category: ${item.category}`
+function expenseDescription(expense) {
+    for (let i = 0; i < expense.length; i++) {
+        console.log(`${expense[i].label} has an amount of $${expense[i].amount}`)
     }
-    return `${item.label} - Not paid yet - Amount owed: $${item.amount} - Category: ${item.category}`
+    // if (item.isPaid) {
+    //     return `${item.label} - Amount paid: $${item.amount} - Category: ${item.category}`
+    // }
+    // return `${item.label} - Not paid yet - Amount owed: $${item.amount} - Category: ${item.category}`
 
 }
 
 
 // total for all expenses
-function getTotal() {
+function getTotal(expense) {
     let total = 0
-    for (let i = 0; i < expenseList.length; i++) {
-        total += expenseList[i].amount;
+    for (let i = 0; i < expense.length; i++) {
+        total += expense[i].amount;
     }
     return `Your recurring expense total is: $${total}`
 }
 
-function getUnpaidTotal() {
-
+function getUnpaidTotal(expense) {
+    let amountToPay = 0;
+    for (let i = 0; i < expense.length; i++) {
+        if (!expense[i].isPaid) {
+            amountToPay += expense[i].amount;
+        }
+    }
+    return `Unpaid total: $${amountToPay}`;
 }
 
 //
@@ -127,11 +136,10 @@ console.log(expensePriority(expenseList[6]));
 console.log(expensePriority(expenseList[2]));
 
 // expense description check
-console.log(expenseDescription(expenseList[0]));
-console.log(expenseDescription(expenseList[4]));
-console.log(expenseDescription(expenseList[6]));
-console.log(expenseDescription(expenseList[2]));
-console.log(expenseDescription(expenseList[5]));
+expenseDescription(expenseList)
 
 // Get total for all expenses
-console.log(getTotal());
+console.log(getTotal(expenseList));
+
+// Unpaid total
+console.log(getUnpaidTotal(expenseList));
