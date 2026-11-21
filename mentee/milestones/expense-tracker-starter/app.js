@@ -113,6 +113,10 @@ function getTotal() {
     return `Your recurring expense total is: $${total}`
 }
 
+function getUnpaidTotal() {
+
+}
+
 //
 // ---------- output ----------
 
