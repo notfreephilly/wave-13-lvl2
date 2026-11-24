@@ -10,9 +10,20 @@
 
 //   1. What shape is an expense? Write one example.
 // array that holds a list of objects
-// For example an expense should describe the label (name), an amount (cost value), a category, if its paid, if the expense charge is recurring, the type of recurring charge (weekly, bi-weekly, monthly), and what priority (importance) the expense is
+// For example an expense should describe the label (name), an amount (cost value), a category, if its paid, 
+// if the expense charge is recurring, the type of recurring charge (weekly, bi-weekly, monthly), and what 
+// priority (importance) the expense is
 
-// Example expense:     {label: "Rent", amount: 1700, category: "home", isPaid: true, isRecurring: true, recurringType: ["weekly", "bi-weekly", "monthly" priority: 1 }
+// Example expense:     {
+// label: "Rent", 
+// amount: 1700, 
+// category: "home",
+//  isPaid: true, 
+// isRecurring: true, 
+// recurringType: ["weekly", "bi-weekly", "monthly"],
+//  priority: 1 
+// }
+
 // Expense property types: string, number, boolean
 
 
@@ -106,7 +117,10 @@ function getPriority(item) {
         if (isPaid) {
             console.log(`${label} - Paid`);
         } else {
-            // The checks here are saying the unpaid expenses with higher amounts need to be prioritized first. All other expenses just let us know that they are still unpaid. If we switched the if/else conditions then all expenses that are unpaid would return and the amount > 100 would not be checked which could lead to more confusion because there is no telling on what expense to pay first.
+            // The checks here are saying the unpaid expenses with higher amounts need to be prioritized first. All other expenses just let us know that
+            //  they are still unpaid. If we switched the if/else conditions then all expenses that are unpaid
+            //  would return and the amount > 100 would not be checked which could lead to more confusion because
+            //  there is no telling on what expense to pay first.
             if (amount > 100) {
                 console.log(`${label} - Pay first`);
             } else {
