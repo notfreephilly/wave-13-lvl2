@@ -7,8 +7,15 @@
 // Start here, after session 4:
 //
 // Design check — answer these in a comment before writing any code.
+
 //   1. What shape is an expense? Write one example.
 // array that holds a list of objects
+// For example an expense should describe the label (name), an amount (cost value), a category, if its paid, if the expense charge is recurring, the type of recurring charge (weekly, bi-weekly, monthly), and what priority (importance) the expense is
+
+// Example expense:     {label: "Rent", amount: 1700, category: "home", isPaid: true, isRecurring: true, recurringType: ["weekly", "bi-weekly", "monthly" priority: 1 }
+// Expense property types: string, number, boolean
+
+
 //   2. What do you want to find out about your expenses?
 // What each priority means
 // The total amount for all expenses at the end of the month
@@ -25,8 +32,9 @@ const expenseList = [
         label: "Rent",
         amount: 1700,
         category: "home",
-        isPaid: true,
+        isPaid: false,
         isRecurring: true,
+        recurringType: ["weekly", "bi-weekly", "monthly"],
         priority: 1
     },
     {
@@ -35,14 +43,16 @@ const expenseList = [
         category: "phone/internet",
         isPaid: false,
         isRecurring: true,
+        recurringType: ["weekly", "bi-weekly", "monthly"],
         priority: 2
     },
     {
         label: "Internet",
-        amount: 80,
+        amount: 150,
         category: "phone/internet",
         isPaid: false,
         isRecurring: true,
+        recurringType: ["weekly", "bi-weekly", "monthly"],
         priority: 2
     },
     {
@@ -51,6 +61,7 @@ const expenseList = [
         category: "home",
         isPaid: false,
         isRecurring: true,
+        recurringType: ["weekly", "bi-weekly", "monthly"],
         priority: 1
     },
     {
@@ -59,6 +70,7 @@ const expenseList = [
         category: "food",
         isPaid: true,
         isRecurring: false,
+        recurringType: ["weekly", "bi-weekly", "monthly"],
         priority: 3
     },
     {
@@ -67,43 +79,60 @@ const expenseList = [
         category: "health",
         isPaid: true,
         isRecurring: true,
+        recurringType: ["weekly", "bi-weekly", "monthly"],
         priority: 2
     },
     {
         label: "Fun",
         amount: 200,
         category: "misc",
-        isPaid: false,
+        isPaid: true,
         isRecurring: false,
+        recurringType: ["weekly", "bi-weekly", "monthly"],
         priority: 3
     },
 ]
 
 // ---------- functions ----------
 // Determine priority
-function expensePriority(item) {
-    if (item.isPaid) {
-        return "Paid"
+
+// The reason why my check are in this order is because, we want to check if the expense has already been paid.
+// There is no point in prioritizing an expense that has already been paid for
+// if we check item.isPaid last, then all the bill will either be "Pay first" or "Unpaid" which can lead to confusion or always needing to pay some expense.
+function getPriority(item) {
+    for (let i = 0; i < item.length; i++) {
+        const { label, isPaid, amount } = item[i]; // Destructuring
+
+        if (isPaid) {
+            console.log(`${label} - Paid`);
+        } else {
+            // The checks here are saying the unpaid expenses with higher amounts need to be prioritized first. All other expenses just let us know that they are still unpaid. If we switched the if/else conditions then all expenses that are unpaid would return and the amount > 100 would not be checked which could lead to more confusion because there is no telling on what expense to pay first.
+            if (amount > 100) {
+                console.log(`${label} - Pay first`);
+            } else {
+                console.log(`${label} - Unpaid`);
+            }
+        }
+
     }
 
-    if (item.priority === 1) {
-        return "Important: Pay first"
-    } else if (item.priority === 2) {
-        return "Pay next"
-    } else {
-        return "Pay after all other expenses are covered"
-    }
 }
 
-function expenseDescription(expense) {
-    for (let i = 0; i < expense.length; i++) {
-        console.log(`${expense[i].label} has an amount of $${expense[i].amount}`)
-    }
-    // if (item.isPaid) {
-    //     return `${item.label} - Amount paid: $${item.amount} - Category: ${item.category}`
-    // }
-    // return `${item.label} - Not paid yet - Amount owed: $${item.amount} - Category: ${item.category}`
+function describeExpense(expense) {
+    let description = "";
 
+    for (let i = 0; i < expense.length; i++) {
+        // destructuring
+        const { label, amount, category, isPaid, priority } = expense[i];
+
+        if (isPaid) {
+            description = `${label} - $${amount} (${category}, paid, priority: ${priority})`
+            console.log(description);
+        } else {
+            description = `${label} - $${amount} (${category}, unpaid, priority: ${priority})`
+            console.log(description);
+        }
+    }
 }
 
 
@@ -113,7 +142,7 @@ function getTotal(expense) {
     for (let i = 0; i < expense.length; i++) {
         total += expense[i].amount;
     }
-    return `Your recurring expense total is: $${total}`
+    return total
 }
 
 function getUnpaidTotal(expense) {
@@ -123,23 +152,27 @@ function getUnpaidTotal(expense) {
             amountToPay += expense[i].amount;
         }
     }
-    return `Unpaid total: $${amountToPay}`;
+    return amountToPay;
 }
 
 //
 // ---------- output ----------
 
 // expense priority
-console.log(expensePriority(expenseList[0]));
-console.log(expensePriority(expenseList[4]));
-console.log(expensePriority(expenseList[6]));
-console.log(expensePriority(expenseList[2]));
+console.log("EXPENSE PRIORITY:");
+getPriority(expenseList);
 
+console.log("------------------------------------------------");
 // expense description check
-expenseDescription(expenseList)
+console.log("EXPENSE DESCRIPTION:");
+describeExpense(expenseList)
 
+console.log("------------------------------------------------");
 // Get total for all expenses
+console.log("TOTAL AMOUNT FOR ALL EXPENSES:");
 console.log(getTotal(expenseList));
 
+console.log("------------------------------------------------");
 // Unpaid total
+console.log("TOTAL AMOUNT FOR UNPAID EXPENSES:");
 console.log(getUnpaidTotal(expenseList));
