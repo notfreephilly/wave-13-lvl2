@@ -77,3 +77,43 @@ const gradeBook = [
 // topStudent, returns the student with the highest score
 
 // 3. 
+
+
+
+
+
+
+const product = {
+    name: "Headphones",
+    price: 99,
+
+    inStock: true,
+};
+
+// function displayProduct(product) {
+//   console.log(product.name);
+
+//   if (product.inStock) {
+//     console.log("Product available");
+//   }
+// }
+
+const productCat = {
+    category: "Elec",
+};
+
+// displayProduct(product);
+
+function displayProduct(product, productCat) {
+    const { name, price } = product;
+    const { category } = productCat;
+    console.log(category);
+    console.log(name);
+    console.log(price);
+
+    // if (inStock) {
+    //   console.log("Product available");
+    // }
+}
+
+displayProduct(product, productCat);
