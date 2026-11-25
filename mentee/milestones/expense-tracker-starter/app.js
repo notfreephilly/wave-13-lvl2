@@ -110,17 +110,13 @@ const expenseList = [
 // The reason why my check are in this order is because, we want to check if the expense has already been paid.
 // There is no point in prioritizing an expense that has already been paid for
 // if we check item.isPaid last, then all the bill will either be "Pay first" or "Unpaid" which can lead to confusion or always needing to pay some expense.
-function getPriority(item) {
-    for (let i = 0; i < item.length; i++) {
-        const { label, isPaid, amount } = item[i]; // Destructuring
+function getPriority(expenses) {
+    for (let i = 0; i < expenses.length; i++) {
+        const { label, amount, isPaid } = expenses[i];
 
         if (isPaid) {
             console.log(`${label} - Paid`);
         } else {
-            // The checks here are saying the unpaid expenses with higher amounts need to be prioritized first. All other expenses just let us know that
-            //  they are still unpaid. If we switched the if/else conditions then all expenses that are unpaid
-            //  would return and the amount > 100 would not be checked which could lead to more confusion because
-            //  there is no telling on what expense to pay first.
             if (amount > 100) {
                 console.log(`${label} - Pay first`);
             } else {
@@ -129,7 +125,10 @@ function getPriority(item) {
         }
 
     }
-
+    // The checks here are saying the unpaid expenses with higher amounts need to be prioritized first. All other expenses just let us know that
+    //  they are still unpaid. If we switched the if/else conditions then all expenses that are unpaid
+    //  would return and the amount > 100 would not be checked which could lead to more confusion because
+    //  there is no telling on what expense to pay first.
 }
 
 function describeExpense(expense) {
@@ -151,23 +150,64 @@ function describeExpense(expense) {
 
 
 // total for all expenses
-function getTotal(expense) {
-    let total = 0
-    for (let i = 0; i < expense.length; i++) {
-        total += expense[i].amount;
-    }
-    return total
+function getTotal(expenses) {
+
+    // STAGE 3 REWRITE
+    const total = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+
+    // for (let i = 0; i < expense.length; i++) {
+    //     total += expense[i].amount;
+    // }
+    return `$${total}`
 }
 
-function getUnpaidTotal(expense) {
+
+
+function getUnpaidTotal(expenses) {
     let amountToPay = 0;
-    for (let i = 0; i < expense.length; i++) {
-        if (!expense[i].isPaid) {
-            amountToPay += expense[i].amount;
+
+    for (const expense of expenses) {
+        if (!expense.isPaid) {
+            amountToPay += expense.amount;
         }
-    }
-    return amountToPay;
+    };
+
+
+    return `$${amountToPay}`;
+    // for (let i = 0; i < expense.length; i++) {
+    //     if (!expense[i].isPaid) {
+    //         amountToPay += expense[i].amount;
+    //     }
+    // }
 }
+
+// Stage 3 logic
+
+function getUnpaid(expenses) {
+    const unPaid = expenses.filter((expense) => !expense.isPaid);
+    return unPaid;
+}
+
+
+function getLabels(expenses) {
+    const labels = expenses.map((expense) => expense.label);
+    return labels;
+}
+
+
+function findExpense(expenses, label) {
+    const isFound = expenses.find((expense) => expense.label === label);
+    const result = isFound ? isFound : `Could not find ${label}. Please try again.`;
+
+    return result;
+    // if (isFound) {
+    //     return isFound;
+    // }
+    // return `Could not find ${label}. Please try again.`
+}
+
+
+
 
 //
 // ---------- output ----------
@@ -176,17 +216,40 @@ function getUnpaidTotal(expense) {
 console.log("EXPENSE PRIORITY:");
 getPriority(expenseList);
 
+
 console.log("------------------------------------------------");
 // expense description check
-console.log("EXPENSE DESCRIPTION:");
+console.log("All Expenses:");
 describeExpense(expenseList)
+
 
 console.log("------------------------------------------------");
 // Get total for all expenses
-console.log("TOTAL AMOUNT FOR ALL EXPENSES:");
+console.log("Total:");
 console.log(getTotal(expenseList));
+
 
 console.log("------------------------------------------------");
 // Unpaid total
-console.log("TOTAL AMOUNT FOR UNPAID EXPENSES:");
+console.log("Still to pay:");
 console.log(getUnpaidTotal(expenseList));
+
+
+console.log("------------------------------------------------");
+// Check getUnpaid function
+console.log("Unpaid Expenses:");
+console.log(getUnpaid(expenseList));
+
+
+console.log("------------------------------------------------");
+// Check getLabels function
+console.log("Labels:");
+console.log(getLabels(expenseList));
+
+
+console.log("------------------------------------------------");
+console.log("Find Expense:");
+console.log(findExpense(expenseList, "Rent"));
+console.log(findExpense(expenseList, "Phone"));
+console.log(findExpense(expenseList, "Coffee"));
+console.log(findExpense(expenseList, "Water delivery"));
