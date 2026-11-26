@@ -111,19 +111,16 @@ const expenseList = [
 // There is no point in prioritizing an expense that has already been paid for
 // if we check item.isPaid last, then all the bill will either be "Pay first" or "Unpaid" which can lead to confusion or always needing to pay some expense.
 function getPriority(expenses) {
-    for (let i = 0; i < expenses.length; i++) {
-        const { label, amount, isPaid } = expenses[i];
+    const { amount, isPaid } = expenses;
 
-        if (isPaid) {
-            console.log(`${label} - Paid`);
+    if (isPaid) {
+        return "Paid"
+    } else {
+        if (amount > 100) {
+            return "Pay first"
         } else {
-            if (amount > 100) {
-                console.log(`${label} - Pay first`);
-            } else {
-                console.log(`${label} - Unpaid`);
-            }
+            return "Unpaid"
         }
-
     }
     // The checks here are saying the unpaid expenses with higher amounts need to be prioritized first. All other expenses just let us know that
     //  they are still unpaid. If we switched the if/else conditions then all expenses that are unpaid
@@ -132,21 +129,15 @@ function getPriority(expenses) {
 }
 
 function describeExpense(expense) {
-    let description = "";
+    const { label, amount, category, isPaid, priority } = expense;
 
-    for (let i = 0; i < expense.length; i++) {
-        // destructuring
-        const { label, amount, category, isPaid, priority } = expense[i];
-
-        if (isPaid) {
-            description = `${label} - $${amount} (${category}, paid, priority: ${priority})`
-            console.log(description);
-        } else {
-            description = `${label} - $${amount} (${category}, unpaid, priority: ${priority})`
-            console.log(description);
-        }
+    if (isPaid) {
+        return `${label} - $${amount} (${category}, paid) - priority: ${priority}`
+    } else {
+        return `${label} - $${amount} (${category}, unpaid) - priority: ${priority}`
     }
 }
+
 
 
 // total for all expenses
@@ -158,7 +149,7 @@ function getTotal(expenses) {
     // for (let i = 0; i < expense.length; i++) {
     //     total += expense[i].amount;
     // }
-    return `$${total}`
+    return total;
 }
 
 
@@ -173,7 +164,7 @@ function getUnpaidTotal(expenses) {
     };
 
 
-    return `$${amountToPay}`;
+    return amountToPay;
     // for (let i = 0; i < expense.length; i++) {
     //     if (!expense[i].isPaid) {
     //         amountToPay += expense[i].amount;
@@ -197,13 +188,10 @@ function getLabels(expenses) {
 
 function findExpense(expenses, label) {
     const isFound = expenses.find((expense) => expense.label === label);
-    const result = isFound ? isFound : `Could not find ${label}. Please try again.`;
 
-    return result;
-    // if (isFound) {
-    //     return isFound;
-    // }
-    // return `Could not find ${label}. Please try again.`
+    if (!isFound) {
+        return `Could not find ${label}.`
+    }
 }
 
 
@@ -214,13 +202,18 @@ function findExpense(expenses, label) {
 
 // expense priority
 console.log("EXPENSE PRIORITY:");
-getPriority(expenseList);
+console.log(getPriority(expenseList[0]));
+console.log(getPriority(expenseList[4]));
+console.log(getPriority(expenseList[3]));
 
 
 console.log("------------------------------------------------");
 // expense description check
 console.log("All Expenses:");
-describeExpense(expenseList)
+// console.log(describeExpense(expenseList[0]));
+expenseList.forEach((expense) => {
+    console.log(describeExpense(expense));
+})
 
 
 console.log("------------------------------------------------");
